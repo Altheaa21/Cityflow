@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ensure height */
+html, body, #root { height: 100%; }
+
+body {
+  background-color: #F4F4F5;
+}

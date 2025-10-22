@@ -1,0 +1,35 @@
+{
+  "version": "2025-10-20",
+  "cities": [
+    {
+      "id": "sydney",
+      "label": "Sydney",
+      "timezone": "Australia/Sydney",
+      "categories": [
+        { "id": "coffee", "label": "Coffee Shop", "ready": true },
+        { "id": "bar", "label": "Bar", "ready": true },
+        { "id": "metro", "label": "Metro Station", "ready": true }
+      ]
+    },
+    {
+      "id": "moscow",
+      "label": "Moscow",
+      "timezone": "Europe/Moscow",
+      "categories": [
+        { "id": "coffee", "label": "Coffee Shop", "ready": true },
+        { "id": "bar", "label": "Bar", "ready": true },
+        { "id": "metro", "label": "Metro Station", "ready": false }
+      ]
+    },
+    {
+      "id": "newyork",
+      "label": "New York",
+      "timezone": "America/New_York",
+      "categories": [
+        { "id": "coffee", "label": "Coffee Shop", "ready": true },
+        { "id": "bar", "label": "Bar", "ready": true },
+        { "id": "metro", "label": "Metro Station", "ready": true }
+      ]
+    }
+  ]
+}
