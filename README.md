@@ -6,6 +6,7 @@
 ## 🧭 Overview
 
 **CityFlow Portal** is an interactive web system for predicting **Point-of-Interest (POI) foot traffic** across multiple cities and categories.  
+
 It integrates a **FastAPI backend** (serving Hugging Face T5-based forecasting models) with a **React + Tailwind frontend**, allowing users to query models in natural language and visualize predictions.
 
 The portal is part of the **PromptCast research project**, exploring prompt-based time series forecasting and cross-city generalization.
@@ -14,6 +15,7 @@ The portal is part of the **PromptCast research project**, exploring prompt-base
 
 ## 🧱 Project Structure
 
+```
 CityFlow/
 │
 ├── apps/
@@ -38,7 +40,7 @@ CityFlow/
 ├── .hf_cache/                   # Local Hugging Face model cache (ignored)
 ├── .gitignore                   # Ignore cache, env, and build files
 └── README.md
-
+```
 
 ---
 
@@ -82,8 +84,13 @@ npm run dev
 
 ## 📊 Features
 ✅ Model selection (Baseline / Finetune)
+
 ✅ Dynamic city/category via manifest
+
 ✅ Real-time inference display
+
 ✅ Local model caching for faster load
+
 🟡 (Planned) Confidence interval and suggestion generation (via LLaMA)
+
 🟡 (Planned) Cloud deployment (Render + Vercel)
