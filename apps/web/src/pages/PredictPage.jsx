@@ -10,16 +10,22 @@ export default function PredictPage({ selectedCity, selectedCategory }) {
   const handleSend = async (inputText, modelType) => {
     if (!selectedCity) return;
 
-    // 1) put user info
+    // user message
     setMessages((prev) => [...prev, { role: "user", text: inputText }]);
 
-    // 2) Calling the interface (when no category is selected, the city-level baseline placeholder category is used)
+    // A placeholder is still sent even when no category is selected (the backend baseline will ignore this).
     const category = selectedCategory || "citywide";
+
+    // Key: Package user input into training templates
+    const formattedQuery = `predict next day: ${inputText}`;
 
     setLoading(true);
     try {
-      const res = await getForecast(selectedCity, category); // get
-      const reply = `Model: ${modelType}\nPredict: ${res.prediction}\nInterval: ${res.interval[0]} - ${res.interval[1]}\nSuggestion: ${res.advice}`;
+      // send modelType and formattedQuery together to the backend
+      const res = await getForecast(selectedCity, category, modelType, formattedQuery);
+
+      // Display the actual model name returned by the backend to avoid inconsistency with the UI selection
+      const reply = `Model: ${res.model}\nPredict: ${res.prediction}\nInterval: ${res.interval[0]} - ${res.interval[1]}\nSuggestion: ${res.advice}`;
       setMessages((prev) => [...prev, { role: "assistant", text: reply }]);
     } catch (err) {
       setMessages((prev) => [
@@ -34,9 +40,8 @@ export default function PredictPage({ selectedCity, selectedCategory }) {
 
   return (
     <div className="mx-auto flex h-[calc(100vh-64px)] max-w-4xl flex-col px-4 text-lg sm:text-xl">
-      {/* top current context */}
       <div className="mb-3 mt-4 text-sm text-slate-600">
-        Currently: {" "}
+        Currently:{" "}
         <span className="rounded bg-slate-200 px-2 py-0.5">
           {selectedCity || "No city selected"}
         </span>{" "}
@@ -46,12 +51,10 @@ export default function PredictPage({ selectedCity, selectedCategory }) {
         </span>
       </div>
 
-      {/* messagelist */}
       <div className="min-h-0 flex-1 overflow-y-auto rounded-lg bg-white p-4">
         <MessageList messages={messages} loading={loading} />
       </div>
 
-      {/* predictbox  */}
       <div className="sticky bottom-0 mt-3">
         <PredictBox
           disabled={!selectedCity}

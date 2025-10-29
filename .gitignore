@@ -34,7 +34,6 @@ dist-ssr
 *.sln
 *.sw?
 
-
 # --- Python ---
 __pycache__/
 *.pyc
@@ -51,3 +50,9 @@ apps/api/.ruff_cache/
 # --- Data / Models (use LFS if needed) ---
 models/
 apps/api/data/
+
+# Hugging Face / Cache
+.hf_cache/
+HF_HOME/
+HF_HUB_CACHE/
+transformers_cache/
